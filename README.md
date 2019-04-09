@@ -1,3 +1,4 @@
 # AlgoCasts
 
-Companion repo to a course on Udemy.com
+Forked from StephenGrider   
+Used for practice of DataStructure and Algorithms in Javascript
