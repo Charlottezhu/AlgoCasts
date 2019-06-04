@@ -8,22 +8,24 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {
-
-    if(n === 1){
-        return 1;
-    }
-    if(n === 0){
-        return 0;
-    }
-    if(n >= 2){
-        return fib(n-2)+fib(n-1)
-    }
-    
-
-
+function memorize(fn){
+    const cache = {};
+    return function(...args){
+        if(cache[args]){
+            return cache[args];
+        }
+        const result = fn.apply(this,args);
+        cache[args] = result;
+        return result;
+    };
 }
-
+function slowFib(n){
+    if(n<2){
+        return n;
+    }
+    return fib(n-1) + fib(n-2);
+}
+const fib = memorize(slowFib);
 module.exports = fib;
 
 /*let result = 0;
@@ -41,3 +43,19 @@ module.exports = fib;
     }
     return result;
 */
+
+/*function fib(n) {
+
+    if(n === 1){
+        return 1;
+    }
+    if(n === 0){
+        return 0;
+    }
+    if(n >= 2){
+        return fib(n-2)+fib(n-1)
+    }
+    
+
+
+}*/
